@@ -1,0 +1,6652 @@
+bash:
+
+echo hello terminal
+psql --username=freecodecamp --dbname=postgres
+
+psql term:
+\l
+CREATE DATABASE bikes;
+\l
+\c bikes
+CREATE TABLE bikes();
+\d
+ALTER TABLE bikes ADD COLUMN bike_id SERIAL PRIMARY KEY;
+\d bikes
+ALTER TABLE bikes ADD COLUMN type VARCHAR(50) NOT NULL;
+\d bikes
+ALTER TABLE bikes ADD COLUMN size INT NOT NULL;
+ALTER TABLE bikes ADD COLUMN available BOOLEAN NOT NULL DEFAULT TRUE;
+
+\d bikes
+CREATE TABLE customers();
+ALTER TABLE customers ADD COLUMN customer_id SERIAL PRIMARY KEY;
+
+\d customers
+ALTER TABLE customers ADD COLUMN phone VARCHAR(15) NOT NULL UNIQUE;
+
+ALTER TABLE customers ADD COLUMN name VARCHAR(40) NOT NULL;
+\d customers
+CREATE TABLE rentals();
+ALTER TABLE rentals ADD COLUMN rental_id SERIAL PRIMARY KEY;
+
+\d rentals
+ALTER TABLE rentals ADD COLUMN customer_id INT NOT NULL;
+ALTER TABLE rentals ADD FOREIGN KEY(customer_id) REFERENCES customers(customer_id);
+
+\d rentals
+ALTER TABLE rentals ADD COLUMN bike_id INT NOT NULL;
+ALTER TABLE rentals ADD FOREIGN KEY(bike_id) REFERENCES bikes(bike_id);
+
+\d rentals
+ALTER TABLE rentals ADD COLUMN date_rented DATE NOT NULL DEFAULT NOW();
+
+\d rentals
+ALTER TABLE rentals ADD COLUMN date_returned DATE;
+\d rentals
+\d
+INSERT INTO bikes(type,size) VALUES('Mountain',27);
+SELECT * FROM bikes;
+INSERT INTO bikes(type,size) VALUES('Mountain',28);
+INSERT INTO bikes(type,size) VALUES('Mountain',29);
+INSERT INTO bikes(type,size) VALUES('Road',27);
+SELECT * FROM bikes;
+INSERT INTO bikes(type,size) VALUES
+('Road',28),
+('Road',29);
+
+INSERT INTO bikes(bike_id,type,size) VALUES
+('BMX',19),
+('BMX',20),
+('BMX',21);
+
+split term...
+bash:
+touch bike-shop.sh
+
+bike-shop.sh:
+-----------------------------------------------------------
+#!/bin/bash
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+-----------------------------------------------------------
+
+chmod +x bike-shop.sh
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+}
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+}
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU ;;
+    esac
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    echo Rent Menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+
+    # if no bikes available
+
+    # send to main menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+
+    # if no bikes available
+
+    # send to main menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+
+    # send to main menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    echo "$AVAILABLE_BIKES"
+
+    # if no bikes available
+
+    # send to main menu
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+psql:
+
+UPDATE bikes SET available = false WHERE available = true;
+-----------------------------------------------------------
+bash:
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    echo "$AVAILABLE_BIKES"
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+            # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    echo "$AVAILABLE_BIKES"
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+            # send to main menu
+            MAIN_MENU "Sorry, we don't have any bikes available right now."
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    echo "$AVAILABLE_BIKES"
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+
+        # ask for bike to rent
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    echo "$AVAILABLE_BIKES"
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        # ask for bike to rent
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES"
+        # ask for bike to rent
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+psql:
+
+UPDATE bikes SET available = true WHERE NOT type = 'BMX';
+-----------------------------------------------------------
+
+bash:
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+            echo "$BIKE_ID $TYPE $SIZE"
+        done
+        # ask for bike to rent
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+            echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+        # ask for bike to rent
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+            echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent"
+
+        # if input is not a number
+
+        # send to main menu
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+
+        # send to main menu
+
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+[[ a =~ [0-9] ]]; echo $?
+[[ a1 =~ [0-9] ]]; echo $?
+[[ a1 =~ ^[0-9]$ ]]; echo $?
+[[ 1 =~ ^[0-9]$ ]]; echo $?
+[[ 11 =~ ^[0-9]$ ]]; echo $?
+[[ 11 =~ ^[0-9]+$ ]]; echo $?
+[[ ! 11 =~ ^[0-9]+$ ]]; echo $?
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+
+            # if not available
+
+            # send to main menu
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            # send to main menu
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            echo $BIKE_AVAILABILITY
+
+            # if not available
+
+            # send to main menu
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            echo $BIKE_AVAILABILITY
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            echo $BIKE_AVAILABILITY
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+-----------------------------------------------------------
+
+psql:
+
+UPDATE bikes SET available = true;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+
+                # if customer doesn't exist
+
+                # get new customer name
+
+                # insert new customer
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+
+                # if customer doesn't exist
+
+                # get new customer name
+
+                # insert new customer
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+
+                # if customer doesn't exist
+
+                # get new customer name
+
+                # insert new customer
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                    # get new customer name
+
+                    # insert new customer
+
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+
+                    # insert new customer
+                fi
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+
+                    # insert new customer
+                fi
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+
+                fi
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+-----------------------------------------------------------
+
+psql:
+
+select * from customers;
+select * from rentals;
+select * from bikes;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+
+                # insert bike rental
+
+                # set bike availability to false
+
+                # get bike info
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+
+                # set bike availability to false
+
+                # get bike info
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+
+                # get bike info
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+-----------------------------------------------------------
+
+psql:
+
+SELECT * FROM rentals;
+SELECT * FROM bikes ORDER BY bike_id;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                echo $BIKE_INFO
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+echo '28 | Mountain' | sed 's/ /=/g'
+echo '28 | Mountain' | sed 's/ //g'
+echo '28 | Mountain' | sed 's/ //'
+echo '28 | Mountain' | sed 's/ |//'
+echo '28 | Mountain' | sed 's/ |/"/'
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $CUSTOMER_NAME."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+echo ' M e '
+echo "$(echo ' M e ')."
+echo "$(echo ' M e ' | sed 's/ //')."
+echo "$(echo ' M e ' | sed 's/ //g')."
+echo "$(echo ' M e ' | sed 's/^ //g')."
+echo "$(echo '   M e ' | sed 's/^ //g')."
+echo "$(echo '   M e ' | sed 's/^ *//g')."
+echo "$(echo '   M e ' | sed 's/ $//g')."
+echo "$(echo '   M e   ' | sed 's/ $//g')."
+echo "$(echo '   M e   ' | sed 's/ *$//g')."
+echo "$(echo '   M e   ' | sed 's/^ *| *$//g')."
+man sed
+echo "$(echo '   M e   ' | sed -E 's/^ *| *$//g')."
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+    echo Return Menu
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+./bike-shop.sh
+./bike-shop.sh
+-----------------------------------------------------------
+
+psql:
+
+SELECT * FROM bikes ORDER BY bike_id;
+SELECT * FROM customers;
+SELECT * FROM rentals;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+
+    # if not found
+
+    # send to main menu
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+
+    # if not found
+
+    # send to main menu
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+
+    # if not found
+
+    # send to main menu
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+
+        # if no rentals
+
+        # send to main menu
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+psql:
+
+SELECT * FROM bikes;
+SELECT * FROM bikes LEFT JOIN rentals USING(bike_id);
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id);
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id);
+
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND date_returned IS NULL;
+
+SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND date_returned IS NULL;
+
+SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND date_returned IS NULL ORDER BY bike_id;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        # send to main menu
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        echo "$CUSTOMER_RENTALS"
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        echo "$CUSTOMER_RENTALS"
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+
+            # ask for bike to return
+
+            # if not a number
+
+            # send to main menu
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            # ask for bike to return
+
+            # if not a number
+
+            # send to main menu
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS"
+            # ask for bike to return
+
+            # if not a number
+
+            # send to main menu
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+            # ask for bike to return
+
+            # if not a number
+
+            # send to main menu
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+
+            # if not a number
+
+            # send to main menu
+        fi
+
+
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+
+                # if input not rented
+
+                # send to main menu
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+psql:
+
+SELECT * FROM rentals INNER JOIN customers USING(customer_id);
+SELECT * FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND bike_id = 1 AND date_returned IS NULL;
+
+SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND bike_id = 1 AND date_returned IS NULL;
+-----------------------------------------------------------
+
+bash:
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+
+                # send to main menu
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                    MAIN_MENU "You do not have that bike rented."
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                    MAIN_MENU "You do not have that bike rented."
+                else
+                    echo "Rental ID $RENTAL_ID found"
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                    MAIN_MENU "You do not have that bike rented."
+                else
+                    # update date_returned
+
+                    # set bike availability to true
+
+                    # send to main menu
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                    MAIN_MENU "You do not have that bike rented."
+                else
+                    # update date_returned
+                    RETURN_BIKE_RESULT=$($PSQL "UPDATE rentals SET date_returned = NOW() WHERE rental_id = $RENTAL_ID")
+
+                    # set bike availability to true
+
+                    # send to main menu
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+-----------------------------------------------------------
+#!/bin/bash
+PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
+echo -e '\n~~~~~ Bike Rental Shop ~~~~~\n'
+
+MAIN_MENU(){
+
+    if [[ $1 ]]
+    then
+        echo -e "\n$1"
+    fi
+
+    echo How may I help you?
+    echo -e '\n1. Rent a bike\n2. Return a bike\n3. Exit'
+    read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
+}
+
+RENT_MENU(){
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+
+    # if no bikes available
+    # -z check if empty.
+    if [[ -z $AVAILABLE_BIKES ]]
+    then
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
+    else
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+        then
+            # send to main menu
+            MAIN_MENU "That is not a valid bike number."
+        else
+            # get bike availability
+            BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true;")
+
+            # if not available
+
+            if [[ -z $BIKE_AVAILABILITY ]]
+            then
+                # send to main menu
+                MAIN_MENU "That bike is not available."
+            else
+                # get customer info
+                echo -e "\nWhat's your phone number?"
+                read PHONE_NUMBER
+                CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER';")
+
+                # if customer doesn't exist
+
+                if [[ -z $CUSTOMER_NAME ]]
+                then
+                    # get new customer name
+                    echo -e "\nWhat's your name?"
+                    read CUSTOMER_NAME
+
+                    # insert new customer
+                    INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER','$CUSTOMER_NAME');")
+                fi
+
+                # get customer_id
+                CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+                # insert bike rental
+                INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID','$BIKE_ID_TO_RENT')")
+
+                # set bike availability to false
+                SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available = false WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                # get bike info
+                BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+                BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+                # send to main menu
+                MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+
+            fi
+        fi
+    fi
+}
+
+RETURN_MENU() {
+
+    # get customer info
+    echo -e "\nWhat's your phone number?"
+    read PHONE_NUMBER
+    CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+        # send to main menu
+        MAIN_MENU "I could not find a record for that phone number."
+    else
+        # get customer's rentals
+        CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id;")
+
+        # if no rentals
+
+        if [[ -z $CUSTOMER_RENTALS ]]
+        then
+            # send to main menu
+            MAIN_MENU "You do not have any bikes rented."
+        else
+            # display rented bikes
+            echo -e "\nHere are your rentals:"
+            echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
+            do
+                echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+            done
+
+            # ask for bike to return
+            echo -e "\nWhich one would you like to return?"
+            read BIKE_ID_TO_RETURN
+
+            # if not a number
+            if [[ ! $BIKE_ID_TO_RETURN =~ ^[0-9]+$ ]]
+            then
+                # send to main menu
+                MAIN_MENU "That is not a valid bike number."
+            else
+                # check if input is rented
+                RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND bike_id = $BIKE_ID_TO_RETURN AND date_returned IS NULL")
+
+                # if input not rented
+                if [[ -z $RENTAL_ID ]]
+                then
+                    # send to main menu
+                    MAIN_MENU "You do not have that bike rented."
+                else
+                    # update date_returned
+                    RETURN_BIKE_RESULT=$($PSQL "UPDATE rentals SET date_returned = NOW() WHERE rental_id = $RENTAL_ID")
+
+                    # set bike availability to true
+                    SET_TO_TRUE_RESULT=$($PSQL "UPDATE bikes SET available = true WHERE bike_id = $BIKE_ID_TO_RETURN")
+
+                    # send to main menu
+                    MAIN_MENU "Thank you for returning your bike."
+                fi
+            fi
+        fi
+    fi
+
+}
+
+EXIT(){
+    echo -e '\nThank you for stopping in.\n'
+}
+
+MAIN_MENU
+-----------------------------------------------------------
+
+./bike-shop.sh
+-----------------------------------------------------------
+
+PSQL:
+
+SELECT * FROM rentals;
+SELECT * FROM bikes ORDER BY bike_id;
+-----------------------------------------------------------
+
+bash:
+
+./bike-shop.sh
+-----------------------------------------------------------
